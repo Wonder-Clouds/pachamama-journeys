@@ -1,11 +1,9 @@
 import Image from "next/image";
-import Header from "./components/Header";
 import { MapPinIcon, UsersIcon, Phone } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="relative">
-      <Header />
+    <>
       <Image
         src="/banner.webp"
         alt="Banner Pachamama Journeys"
@@ -55,10 +53,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
-      <footer className="bg-gray-800 text-white text-center py-6">
-        <p>&copy; 2025 Pachamama Journeys - Todos los derechos reservados</p>
-      </footer>
-    </div>
+    </>
   );
 }

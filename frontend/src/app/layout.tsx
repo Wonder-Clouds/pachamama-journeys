@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Merriweather, Poppins, DM_Sans } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
+import WhatsAppButton from "./components/WhatsappButton";
+import Footer from "./components/Footer";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -34,9 +37,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${merriweather.variable} ${dm_sans.variable} font-poppins antialiased`}
+        className={`${poppins.variable} ${merriweather.variable} ${dm_sans.variable} font-poppins antialiased relative`}
       >
+        <Header />
+        
         {children}
+
+        <WhatsAppButton />
+
+        <Footer />
       </body>
     </html>
   );
