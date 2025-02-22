@@ -11,7 +11,20 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#7E4B00",
+        secondary: "#ea8a00",
+        accent: "",
+        muted: "",
+        error: "",
+        success: "",
+        warning: "",
+        info: "",
       },
+      fontFamily: {
+        poppins: "var(--font-poppins)",
+        merriweather: "var(--font-merriweather)",
+        "dm-sans": "var(--font-dm-sans)"
+      }
     },
   },
   plugins: [],
