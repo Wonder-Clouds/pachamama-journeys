@@ -3,9 +3,17 @@
 import React from 'react';
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
 
+  const paths = [
+    { name: "Inicio", path: "/" },
+    { name: "Tours", path: "/tours" },
+    { name: "Sobre Nosotros", path: "/nosotros" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contacto", path: "/contacto" },
+  ]
   return (
     <footer className="relative bg-gray-900 text-white overflow-hidden">
       {/* Decorative background pattern */}
@@ -21,7 +29,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Image src="/logo.webp" alt="Logo" width={400} height={400} className="w-12 h-12 rounded-full" />
+              <Image src="/isotipo.webp" alt="Isotipo" width={400} height={400} className="w-12 h-12 rounded-full" />
               <h3 className="text-xl font-bold">Pachamama Journeys</h3>
             </div>
             <p className="text-gray-400 pr-4">
@@ -44,16 +52,18 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
             <ul className="space-y-2">
-              {['Inicio', 'Destinos', 'Paquetes', 'Sobre Nosotros', 'Blog', 'Contacto'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-gray-400 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">
-                    {link}
-                  </a>
+              {paths.map(({ name, path }) => (
+                <li key={name}>
+                  <Link
+                    href={path}
+                    className="text-gray-400 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block"
+                  >
+                    {name}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
-
           {/* Tours */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Tours Populares</h4>
