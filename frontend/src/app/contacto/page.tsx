@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Send, Clock, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, Clock } from 'lucide-react';
 import Image from 'next/image';
 
 const Contactanos = () => {
@@ -12,12 +12,12 @@ const Contactanos = () => {
     mensaje: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Formulario enviado:', formData);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
