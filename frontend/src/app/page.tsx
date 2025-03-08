@@ -6,44 +6,12 @@ import {
   MapPinIcon, 
   UsersIcon, 
   Phone, 
-  Star,
-  Calendar,
   Clock,
-  ArrowRight,
-  Camera,
-  Mountain,
-  Heart,
-  ChevronLeft,
-  ChevronRight
+  ArrowRight
 } from "lucide-react";
 
 export default function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isVisible, setIsVisible] = useState({});
-
-  const testimonials = [
-    {
-      text: "Una experiencia inolvidable, los guías fueron increíbles y el servicio superó todas nuestras expectativas.",
-      author: "Juan Pérez",
-      location: "España",
-      rating: 5,
-      image: "/api/placeholder/100/100"
-    },
-    {
-      text: "El viaje a Machu Picchu fue perfecto. Todo muy bien organizado y con atención a cada detalle.",
-      author: "María Gómez",
-      location: "Argentina",
-      rating: 5,
-      image: "/api/placeholder/100/100"
-    },
-    {
-      text: "Increíble tour por el Valle Sagrado. Los guías son muy conocedores y apasionados.",
-      author: "Carlos Ruiz",
-      location: "México",
-      rating: 5,
-      image: "/api/placeholder/100/100"
-    }
-  ];
+  const [isVisible, setIsVisible] = useState({ servicios: false, tours: false });
 
   const popularTours = [
     {
@@ -85,14 +53,6 @@ export default function Home() {
 
     return () => observer.disconnect();
   }, []);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
 
   return (
     <div className="overflow-x-hidden">
