@@ -29,7 +29,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Image src="/isotipo.webp" alt="Isotipo" width={400} height={400} className="w-12 h-12 rounded-full" />
+              <Image src="/isotipo-blanco.webp" alt="Isotipo" width={400} height={400} className="w-12 h-12 rounded-full" />
               <h3 className="text-xl font-bold">Pachamama Journeys</h3>
             </div>
             <p className="text-gray-400 pr-4">
@@ -91,11 +91,11 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-secondary flex-shrink-0 mt-1" />
-                <p className="text-gray-400">Av. El Sol 123, Cusco, Perú</p>
+                <p className="text-gray-400">Jirón Chavín 9, Cusco 08006</p>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-secondary" />
-                <p className="text-gray-400">+51 984 123 456</p>
+                <p className="text-gray-400">+51 953 876 498</p>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-secondary" />

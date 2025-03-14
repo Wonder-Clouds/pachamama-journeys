@@ -42,7 +42,7 @@ const Nosotros: React.FC = () => {
 
   const valores = [
     {
-      icon: <Users className="w-12 h-12 mb-4 text-primary" />, 
+      icon: <Users className="w-12 h-12 mb-4 text-primary" />,
       titulo: "Experiencia Personalizada",
       descripcion:
         "Adaptamos cada viaje a tus preferencias y necesidades específicas, creando experiencias únicas y memorables.",
@@ -76,14 +76,15 @@ const Nosotros: React.FC = () => {
 
   return (
     <div className="relative overflow-x-hidden">
-      {/* Banner Section con Parallax y Animación */}
-      <div className="relative bg-[url('/banner.webp')] bg-fixed bg-cover bg-center text-white py-32">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-red-200/70"></div>
+      <div className="relative h-[60vh] bg-[url('/banner.webp')] bg-cover bg-center">
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
-        <div className="relative z-10 container mx-auto text-center mt-24 px-6 animate-fade-in">
-          <h1 className="text-6xl font-bold mb-6 animate-slide-up">CONOCE SOBRE NOSOTROS</h1>
-          <p className="text-xl mt-4 max-w-2xl mx-auto animate-fade-in-delay">
+        <div className="relative h-full flex flex-col items-center justify-center text-white px-4">
+          <h1 className="text-5xl md:text-6xl font-bold text-center mb-6 animate-fade-up">
+            CONOCE SOBRE NOSOTROS
+          </h1>
+          <p className="text-xl md:text-2xl text-center max-w-3xl mb-8 animate-fade-up delay-100">
             Brindamos un servicio de alta calidad, asegurando que cada cliente disfrute de una experiencia única e inolvidable al descubrir la magia de Cusco.
           </p>
         </div>
@@ -91,7 +92,6 @@ const Nosotros: React.FC = () => {
         {/* Decorative floating elements */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="animate-float-slow absolute top-1/4 left-1/4 w-16 h-16 bg-white/20 rounded-full blur-sm"></div>
-          <div className="animate-float-slower absolute top-1/3 right-1/3 w-24 h-24 bg-red-400/20 rounded-full blur-sm"></div>
           <div className="animate-float absolute bottom-1/4 right-1/4 w-20 h-20 bg-yellow-400/20 rounded-full blur-sm"></div>
         </div>
       </div>
@@ -111,17 +111,17 @@ const Nosotros: React.FC = () => {
             </div>
             <div className={`relative transform transition-all duration-1000 ${isVisible.historia ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
               <div className="relative h-96 rounded-lg overflow-hidden">
-                <Image 
+                <Image
                   src="/banner.webp"
                   width={800}
                   height={600}
-                  alt="Machu Picchu" 
+                  alt="Machu Picchu"
                   className="object-cover w-full h-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
               </div>
               <div className="absolute -bottom-6 -left-6 w-48 h-48 rounded-lg overflow-hidden shadow-xl">
-                <Image 
+                <Image
                   src="/banner.webp"
                   alt="Local Community"
                   width={400}
@@ -139,11 +139,10 @@ const Nosotros: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {estadisticas.map((stat, index) => (
-              <div 
+              <div
                 key={index}
-                className={`text-center transform transition-all duration-1000 delay-${index * 200} ${
-                  isVisible.estadisticas ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                }`}
+                className={`text-center transform transition-all duration-1000 delay-${index * 200} ${isVisible.estadisticas ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                  }`}
               >
                 <div className="flex justify-center mb-4">{stat.icon}</div>
                 <div className="text-4xl font-bold mb-2">{stat.numero}</div>
@@ -160,11 +159,10 @@ const Nosotros: React.FC = () => {
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Nuestros Valores</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {valores.map((valor, index) => (
-              <div 
+              <div
                 key={index}
-                className={`bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ${
-                  isVisible.valores ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
+                className={`bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ${isVisible.valores ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
                 <div className="hover:scale-110 transition-transform duration-300">
@@ -184,14 +182,13 @@ const Nosotros: React.FC = () => {
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Nuestro Equipo</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[1, 2, 3].map((member, index) => (
-              <div 
+              <div
                 key={index}
-                className={`relative group transform transition-all duration-1000 delay-${index * 200} ${
-                  isVisible.equipo ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                }`}
+                className={`relative group transform transition-all duration-1000 delay-${index * 200} ${isVisible.equipo ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                  }`}
               >
                 <div className="relative overflow-hidden rounded-lg shadow-lg">
-                  <Image 
+                  <Image
                     src={`/banner.webp`}
                     alt={`Team Member ${index + 1}`}
                     width={800}
@@ -216,22 +213,19 @@ const Nosotros: React.FC = () => {
           <div className="absolute inset-0 bg-black opacity-20"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-secondary to-red-500"></div>
         </div>
-        
+
         <div className="relative z-10 container mx-auto px-6 text-center">
-          <h2 className={`text-4xl font-bold mb-6 transform transition-all duration-1000 ${
-            isVisible.cta ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}>
+          <h2 className={`text-4xl font-bold mb-6 transform transition-all duration-1000 ${isVisible.cta ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`}>
             ¿Listo para Vivir una Aventura Inolvidable?
           </h2>
-          <p className={`text-xl mb-8 transform transition-all duration-1000 delay-200 ${
-            isVisible.cta ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}>
+          <p className={`text-xl mb-8 transform transition-all duration-1000 delay-200 ${isVisible.cta ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`}>
             Permítenos ser tu guía en esta experiencia única por las maravillas de Cusco
           </p>
           <button className={`bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 
-            transition-all duration-300 hover:shadow-lg hover:scale-105 transform ${
-            isVisible.cta ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}>
+            transition-all duration-300 hover:shadow-lg hover:scale-105 transform ${isVisible.cta ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`}>
             Contáctanos
           </button>
         </div>
