@@ -8,8 +8,8 @@ const navigationLinks = [
   { name: "Inicio", href: "/" },
   { name: "Nosotros", href: "/nosotros" },
   { name: "Tours", href: "/tours" },
-  { name: "Blog", href: "/blog" },
   { name: "Contáctanos", href: "/contacto" },
+  { name: "Blog", href: "/blog" },
 ];
 
 const Header = () => {
