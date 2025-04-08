@@ -137,7 +137,8 @@ const Footer = () => {
               </div>
             </div>
             <h4 className="text-lg font-semibold my-4">Metodos de Pago</h4>
-            <div className="">
+            <div className="flex flex-col space-y-2">
+              <span>CCI: 00228500713367106857</span>
               <Image
                 src="/cards.webp"
                 alt="Metodos de Pago"

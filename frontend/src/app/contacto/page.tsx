@@ -27,13 +27,13 @@ const Contactanos = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Llámanos",
-      info: "+51 953 876 498",
+      info: "+51 953 775 247",
       description: "Lunes a Viernes 9am - 6pm"
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      info: "contacto@empresa.com",
+      info: "pachamamajourneys.peru@gmail.com",
       description: "Responderemos dentro de 24 horas"
     },
     {
@@ -198,7 +198,7 @@ const Contactanos = () => {
       </div>
 
       {/* FAQ Section */}
-      <div className="bg-primary/5 py-16">
+      {/* <div className="bg-primary/5 py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Preguntas Frecuentes</h2>
@@ -219,7 +219,7 @@ const Contactanos = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

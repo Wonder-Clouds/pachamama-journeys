@@ -14,37 +14,31 @@ export default function Home() {
     {
       title: "Machupicchu Full Day",
       duration: "1 día",
-      price: "250.00",
       image: "/images/imagen_02.webp"
     },
     {
       title: "Valle Sagrado Completo",
       duration: "1 día",
-      price: "25.00",
       image: "/images/imagen_01.webp"
     },
     {
       title: "Valle Sagrado + Machupicchu",
       duration: "2 días / 1 noche",
-      price: "330.00",
       image: "/banner.webp"
     },
     {
       title: "Montaña 7 colores",
       duration: "1 días",
-      price: "35.00",
       image: "/images/imagen_06.webp"
     },
     {
       title: "Laguna Humantay",
       duration: "1 día",
-      price: "35.00",
       image: "/images/imagen_07.webp"
     },
     {
       title: "Montaña de Palcoyo",
       duration: "1 días",
-      price: "40.00",
       image: "/images/imagen_08.webp"
     }
   ];
@@ -157,7 +151,7 @@ export default function Home() {
                         <Clock className="w-4 h-4" />
                         <span>{tour.duration}</span>
                       </div>
-                      <div className="text-xl font-bold">${tour.price}</div>
+                      {/* <div className="text-xl font-bold">${tour.price}</div> */}
                     </div>
                   </div>
                 </div>

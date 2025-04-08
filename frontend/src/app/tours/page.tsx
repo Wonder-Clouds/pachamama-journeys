@@ -215,8 +215,8 @@ const Tours = () => {
 
                 <div className="flex items-center justify-between mt-6">
                   <div>
-                    <span className="text-sm text-gray-500">Desde</span>
-                    <p className="text-2xl font-bold text-primary">${tour.price}</p>
+                    {/* <span className="text-sm text-gray-500">Desde</span> */}
+                    {/* <p className="text-2xl font-bold text-primary">${tour.price}</p> */}
                   </div>
                   <button className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-primary/90 transition-colors">
                     Ver Tour
