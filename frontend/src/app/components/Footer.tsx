@@ -112,7 +112,8 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-secondary" />
                 <p className="text-gray-400">
-                  Avenida Manco Cápac 704, Whanchaq, Cusco
+                Urb. Los Nogales Calle Chavín s-9 
+                San Sebastián Cusco 
                 </p>
               </div>
               <div className="flex items-start space-x-3">
