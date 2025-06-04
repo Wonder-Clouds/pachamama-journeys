@@ -40,7 +40,7 @@ const Contactanos = () => {
       icon: <MapPin className="w-6 h-6" />,
       title: "Ubicación",
       info: "Cusco, Perú",
-      description: "Jirón Chavín 9, Cusco 08006"
+      description: "Urb. Los Nogales Calle Chavín s-9 San Sebastián Cusco"
     }
   ];
 
