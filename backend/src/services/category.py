@@ -16,7 +16,13 @@ def list_categories(session: Session) -> list[Category]:
 
 
 def list_category(session: Session, id_category: int) -> Category | None:
-    return session.get(Category, id_category)
+
+    db_category = session.get(Category, id_category)
+
+    if not db_category:
+        raise HTTPException(status_code=404, detail="Category not found")
+
+    return db_category
 
 
 def update_category(session: Session, id_category: int, category_data: dict) -> Category | None:
