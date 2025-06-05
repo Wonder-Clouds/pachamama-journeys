@@ -66,7 +66,7 @@ async def post_tour(
         description=description,
         category=category,
         gallery=gallery_paths,
-        cover_image=cover_path,
+        cover=cover_path,
         status=status
     )
 
