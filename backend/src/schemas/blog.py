@@ -6,7 +6,7 @@ class Blog(BaseModel):
     id: str
     title: str
     content: str
-    cover: str
+    cover: str | None
     category: Category
     status: bool
     publication_date: str
