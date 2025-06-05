@@ -37,15 +37,13 @@ def update_blog(session: Session, id_blog: str, blog_data: dict) -> Blog | None:
     return db_blog
 
 
-def patch_blog(session: Session, id_blog: str, blog_data: Blog) -> Blog | None:
+def patch_blog(session: Session, id_blog: str, blog_data: dict) -> Blog | None:
     db_blog = session.get(Blog, id_blog)
 
     if not db_blog:
         raise HTTPException(status_code=404, detail="Blog not found")
     
-    blog_dict = blog_data.model_dump(exclude_unset=True)
-
-    for key, value in blog_dict.items():
+    for key, value in blog_data.items():
         setattr(db_blog, key, value)
     
     session.add(db_blog)
@@ -58,7 +56,7 @@ def patch_blog(session: Session, id_blog: str, blog_data: Blog) -> Blog | None:
 def delete_blog(session: Session, id_blog: str) -> bool:
     db_blog = session.get(Blog, id_blog)
 
-    if db_blog:
+    if not db_blog:
         raise HTTPException(status_code=404, detail="Blog not found")
     
     session.delete(db_blog)

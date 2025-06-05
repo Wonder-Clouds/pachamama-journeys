@@ -1,6 +1,5 @@
 from sqlmodel import Field, SQLModel
 import uuid
-from .category import Category
 
 
 class Blog(SQLModel, table=True):
