@@ -21,8 +21,6 @@ jobs:
         port: 22
         script: |
           cd ~/pachamama-journeys
-          pwd
-          ls -la
           git pull origin main --no-rebase
           podman-compose stop backend frontend
           podman-compose build backend frontend
