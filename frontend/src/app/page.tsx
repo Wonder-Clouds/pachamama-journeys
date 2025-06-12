@@ -3,9 +3,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { 
-  MapPinIcon, 
-  UsersIcon, 
-  Phone, 
   Clock,
   ArrowRight
 } from "lucide-react";
@@ -15,22 +12,34 @@ export default function Home() {
 
   const popularTours = [
     {
-      title: "Machu Picchu Mágico",
+      title: "Machupicchu Full Day",
       duration: "1 día",
-      price: "299",
+      image: "/images/imagen_02.webp"
+    },
+    {
+      title: "Valle Sagrado Completo",
+      duration: "1 día",
+      image: "/images/imagen_01.webp"
+    },
+    {
+      title: "Valle Sagrado + Machupicchu",
+      duration: "2 días / 1 noche",
       image: "/banner.webp"
     },
     {
-      title: "Valle Sagrado VIP",
-      duration: "2 días",
-      price: "399",
-      image: "/banner.webp"
+      title: "Montaña 7 colores",
+      duration: "1 días",
+      image: "/images/imagen_06.webp"
     },
     {
-      title: "Camino Inca",
-      duration: "4 días",
-      price: "699",
-      image: "/banner.webp"
+      title: "Laguna Humantay",
+      duration: "1 día",
+      image: "/images/imagen_07.webp"
+    },
+    {
+      title: "Montaña de Palcoyo",
+      duration: "1 días",
+      image: "/images/imagen_08.webp"
     }
   ];
 
@@ -110,48 +119,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Services Section */}
-      <section className="py-20 bg-gray-50" id="servicios" data-animate>
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-4">Nuestros Servicios</h2>
-          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Ofrecemos experiencias únicas y personalizadas para hacer de tu viaje una aventura inolvidable
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <MapPinIcon className="w-12 h-12" />,
-                title: "Tours Personalizados",
-                description: "Explora los mejores destinos con guías expertos y rutas diseñadas a tu medida."
-              },
-              {
-                icon: <UsersIcon className="w-12 h-12" />,
-                title: "Grupos Pequeños",
-                description: "Viajes en grupos reducidos para una experiencia más auténtica y personalizada."
-              },
-              {
-                icon: <Phone className="w-12 h-12" />,
-                title: "Soporte 24/7",
-                description: "Estamos siempre disponibles para ayudarte antes, durante y después de tu viaje."
-              }
-            ].map((service, index) => (
-              <div
-                key={index}
-                className={`bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${
-                  isVisible.servicios ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-                style={{ transitionDelay: `${index * 200}ms` }}
-              >
-                <div className="text-primary mb-6">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Popular Tours Section */}
       <section className="py-20" id="tours" data-animate>
         <div className="container mx-auto px-4">
@@ -184,7 +151,7 @@ export default function Home() {
                         <Clock className="w-4 h-4" />
                         <span>{tour.duration}</span>
                       </div>
-                      <div className="text-xl font-bold">${tour.price}</div>
+                      {/* <div className="text-xl font-bold">${tour.price}</div> */}
                     </div>
                   </div>
                 </div>

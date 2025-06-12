@@ -19,39 +19,91 @@ const Tours = () => {
   const tours = [
     {
       id: 1,
-      title: "Machu Picchu Mágico",
-      category: "cultural",
-      duration: "1 día",
-      groupSize: "12 personas",
-      difficulty: "Fácil",
-      price: "299",
-      rating: 4.9,
-      reviews: 128,
-      image: "/banner.webp"
-    },
-    {
-      id: 2,
-      title: "Camino Inca Clásico",
+      title: "Valle Sagrado Completo",
       category: "trekking",
       duration: "4 días",
       groupSize: "8 personas",
       difficulty: "Desafiante",
-      price: "699",
+      price: "40.00",
       rating: 4.8,
-      reviews: 245,
-      image: "/banner.webp"
+      image: "/images/imagen_01.webp"
     },
     {
-      id: 3,
-      title: "Valle Sagrado VIP",
+      id: 2,
+      title: "Machupicchu Full Day",
       category: "sacred",
       duration: "2 días",
       groupSize: "6 personas",
       difficulty: "Moderado",
-      price: "399",
+      price: "250.00",
       rating: 4.7,
-      reviews: 156,
-      image: "/banner.webp"
+      image: "/images/imagen_02.webp"
+    },
+    {
+      id: 3,
+      title: "Maras Moray",
+      category: "sacred",
+      duration: "2 días",
+      groupSize: "6 personas",
+      difficulty: "Moderado",
+      price: "25.00",
+      rating: 4.7,
+      image: "/images/imagen_03.webp"
+    },
+    {
+      id: 4,
+      title: "Valle Sagrado + Machupicchu",
+      category: "sacred",
+      duration: "2 días",
+      groupSize: "6 personas",
+      difficulty: "Moderado",
+      price: "330.00",
+      rating: 4.7,
+      image: "/images/imagen_02.webp"
+    },
+    {
+      id: 5,
+      title: "Valle Sur",
+      category: "cultural",
+      duration: "1 día",
+      groupSize: "12 personas",
+      difficulty: "Fácil",
+      price: "25.00",
+      rating: 4.9,
+      image: "/images/imagen_05.webp"
+    },
+    {
+      id: 6,
+      title: "Montaña 7 colores",
+      category: "sacred",
+      duration: "2 días",
+      groupSize: "6 personas",
+      difficulty: "Moderado",
+      price: "35.00",
+      rating: 4.7,
+      image: "/images/imagen_06.webp"
+    },
+    {
+      id: 7,
+      title: "Laguna Humantay",
+      category: "sacred",
+      duration: "2 días",
+      groupSize: "6 personas",
+      difficulty: "Moderado",
+      price: "35.00",
+      rating: 4.7,
+      image: "/images/imagen_07.webp"
+    },
+    {
+      id: 8,
+      title: "Montaña de Palcoyo",
+      category: "sacred",
+      duration: "2 días",
+      groupSize: "6 personas",
+      difficulty: "Moderado",
+      price: "40.00",
+      rating: 4.7,
+      image: "/images/imagen_08.webp"
     }
   ];
 
@@ -163,8 +215,8 @@ const Tours = () => {
 
                 <div className="flex items-center justify-between mt-6">
                   <div>
-                    <span className="text-sm text-gray-500">Desde</span>
-                    <p className="text-2xl font-bold text-primary">${tour.price}</p>
+                    {/* <span className="text-sm text-gray-500">Desde</span> */}
+                    {/* <p className="text-2xl font-bold text-primary">${tour.price}</p> */}
                   </div>
                   <button className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-primary/90 transition-colors">
                     Ver Tour

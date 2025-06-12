@@ -8,8 +8,8 @@ const navigationLinks = [
   { name: "Inicio", href: "/" },
   { name: "Nosotros", href: "/nosotros" },
   { name: "Tours", href: "/tours" },
-  { name: "Blog", href: "/blog" },
   { name: "Contáctanos", href: "/contacto" },
+  { name: "Blog", href: "/blog" },
 ];
 
 const Header = () => {
@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-screen-2xl bg-white h-20 flex items-center justify-between px-6 rounded-b-2xl z-50 shadow-md">
       {/* Logo */}
-      <Image src="/logo.webp" alt="Logo" width={150} height={150} className="w-32 h-auto" />
+      <Image src="/logo.webp" alt="Logo" width={300} height={300} className="w-48 h-auto" />
 
       {/* Desktop Navigation */}
       <nav className="hidden md:flex space-x-6">

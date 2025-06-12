@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Send, Clock } from 'lucide-react';
-import Image from 'next/image';
 
 const Contactanos = () => {
   const [formData, setFormData] = useState({
@@ -28,20 +27,20 @@ const Contactanos = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Llámanos",
-      info: "+51 987 654 321",
+      info: "+51 953 775 247",
       description: "Lunes a Viernes 9am - 6pm"
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      info: "contacto@empresa.com",
+      info: "pachamamajourneys.peru@gmail.com",
       description: "Responderemos dentro de 24 horas"
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Ubicación",
       info: "Cusco, Perú",
-      description: "Av. Sol 123, Centro Histórico"
+      description: "Urb. Los Nogales Calle Chavín s-9 San Sebastián Cusco"
     }
   ];
 
@@ -155,12 +154,15 @@ const Contactanos = () => {
           <div className="space-y-8">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="h-96 relative">
-                <Image
-                  src="/banner.webp"
-                  alt="Mapa de ubicación"
-                  layout="fill"
-                  objectFit="cover"
-                />
+                <iframe
+                  title="Ubicación en Google Maps"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4368.825871741314!2d-71.94093468879781!3d-13.541032871466252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x916e7f42eb628da3%3A0xd3010a0b32cb0da9!2sChavin%209%2C%20Cusco%2008006!5e1!3m2!1ses-419!2spe!4v1741915709911!5m2!1ses-419!2spe"
+                  width="100%"
+                  height="450"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </div>
 
@@ -195,24 +197,8 @@ const Contactanos = () => {
         </div>
       </div>
 
-      {/* Google Maps */}
-      <div className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-center mb-6">Nuestra Ubicación</h2>
-        <div className="rounded-2xl overflow-hidden shadow-lg">
-          <iframe
-            title="Ubicación en Google Maps"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62313.0381842092!2d-72.0060194883972!3d-13.51833338355102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x916dd674b7e3fefd%3A0x32b7fef58d7e3e3d!2sCusco%2C%20Per%C3%BA!5e0!3m2!1ses!2sus!4v1644884081397!5m2!1ses!2sus"
-            width="100%"
-            height="450"
-            style={{ border: 0 }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-      </div>
-
       {/* FAQ Section */}
-      <div className="bg-primary/5 py-16">
+      {/* <div className="bg-primary/5 py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Preguntas Frecuentes</h2>
@@ -233,7 +219,7 @@ const Contactanos = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
