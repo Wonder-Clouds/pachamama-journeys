@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from sqlmodel import SQLModel
 from .database.engine import engine
 from .api.v1 import category, blog, tour
+import os
 
 
 @asynccontextmanager
@@ -14,6 +15,9 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+static_dir = "static"
+if not os.path.exists(static_dir):
+    os.makedirs(static_dir)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.include_router(category.router, prefix="/api/v1")
