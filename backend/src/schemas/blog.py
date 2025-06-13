@@ -1,12 +1,12 @@
 from pydantic import BaseModel
-from category import Category
+from category import CategorySchema
 
 # Schema of Blog
-class Blog(BaseModel):
+class BlogSchema(BaseModel):
     id: str
     title: str
     content: str
     cover: str | None
-    category: Category
+    category: CategorySchema
     status: bool
     publication_date: str

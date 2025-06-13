@@ -39,7 +39,7 @@ def update_category(session: Session, id_category: int, category_data: dict) -> 
     return db_category
 
 
-def patch_category(session: Session, id_category: int, category_data: Category) -> Category | None:
+def patch_category(session: Session, id_category: int, category_data: dict) -> Category | None:
     db_category = session.get(Category, id_category)
 
     if not db_category:

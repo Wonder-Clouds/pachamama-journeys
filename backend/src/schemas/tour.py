@@ -1,16 +1,16 @@
 from pydantic import BaseModel
-from category import Category
+from category import CategorySchema
 
 
 # Schema of Tour
-class Tour(BaseModel):
+class TourSchema(BaseModel):
     id: str
     title: str
     location: str
     time: str
     price: float
     description: str
-    category: Category
+    category: CategorySchema
     gallery: list[str]
     cover_image: str
     status: bool
