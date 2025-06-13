@@ -17,7 +17,7 @@ app = FastAPI(lifespan=lifespan)
 
 @app.get('/')
 def hello_world():
-    return {"hello": "world 💻"}
+    return {"hello": "world ☎️"}
 
 static_dir = "static"
 if not os.path.exists(static_dir):
