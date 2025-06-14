@@ -4,7 +4,7 @@ from typing import List
 from uuid import UUID
 import os
 import shutil
-from ...models.tour import Tour
+from ...schemas.tour import TourCreate, TourSchema
 from ...database.engine import get_session
 from ...services import tour
 
@@ -13,13 +13,13 @@ router = APIRouter(tags=["Tour"])
 
 UPLOAD_DIR = "static/uploads/tours"
 
-@router.get("/tours/", response_model=list[Tour])
+@router.get("/tours/", response_model=list[TourSchema])
 async def get_tours(session: Session = Depends(get_session)):
     return tour.list_tours(session)
 
 
-@router.get("/tour/{id_tour}", response_model=Tour)
-async def get_tour(id_tour: str, session: Session = Depends(get_session)):
+@router.get("/tour/{id_tour}", response_model=TourSchema)
+async def get_tour(id_tour: UUID, session: Session = Depends(get_session)):
     db_tour = tour.list_tour(id_tour, session)
 
     if not db_tour:
@@ -28,7 +28,7 @@ async def get_tour(id_tour: str, session: Session = Depends(get_session)):
     return db_tour
 
 
-@router.post("/tour/", response_model=Tour)
+@router.post("/tour/", response_model=TourSchema)
 async def post_tour(
         title: str = Form(...),
         location: str = Form(...),
@@ -58,7 +58,7 @@ async def post_tour(
             shutil.copyfileobj(image.file, buffer)
         gallery_paths.append(image_path)
 
-    new_tour = Tour(
+    new_tour = TourCreate(
         title=title,
         location=location,
         time=time,
@@ -73,7 +73,7 @@ async def post_tour(
     return tour.create_tour(session, new_tour)
 
 
-@router.put("/tour/{id_tour}", response_model=Tour)
+@router.put("/tour/{id_tour}", response_model=TourSchema)
 async def put_tour(
     id_tour: UUID,
     title: str = Form(None),
@@ -122,7 +122,7 @@ async def put_tour(
     return updated
 
 
-@router.patch("/tour/{id_tour}", response_model=Tour)
+@router.patch("/tour/{id_tour}", response_model=TourSchema)
 async def patch_tour(
     id_tour: UUID,
     title: str = Form(None),
