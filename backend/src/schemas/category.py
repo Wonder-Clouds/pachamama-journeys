@@ -16,3 +16,16 @@ class CategorySchema(BaseModel):
             }
         }
     )
+
+class CategoryCreate(BaseModel):
+    name: str
+    type: CategoryType
+
+    model_config = ConfigDict(
+        json_schema_extra={
+            "example": {
+                "name": "Aventuras",
+                "type": "tour"
+            }
+        }
+    )
