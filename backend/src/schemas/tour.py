@@ -24,20 +24,19 @@ class TourSchema(BaseModel):
                 "location": "Valle Sagrado, Cusco",
                 "price": 456.00,
                 "description": "Tour por el Valle Sagrado del Cusco.",
-                "category": {
-                    "id": 4,
-                    "name": "Aventuras",
-                    "type": "tour"
-                },
+                "category": {"id": 4, "name": "Aventuras", "type": "tour"},
                 "gallery": [
                     "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
-                    "category", "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
-                    "category", "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
-                    "category", "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
-                    "category"
-                ], 
-                "cover_image": "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
-                "status": True
+                    "category",
+                    "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
+                    "category",
+                    "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
+                    "category",
+                    "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
+                    "category",
+                ],
+                "cover_image": "static/uploads/blogs/2025-02-27 00-26-31.png",
+                "status": True,
             }
         }
     )
@@ -61,20 +60,19 @@ class TourCreate(BaseModel):
                 "location": "Valle Sagrado, Cusco",
                 "price": 456.00,
                 "description": "Tour por el Valle Sagrado del Cusco.",
-                "category": {
-                    "id": 4,
-                    "name": "Aventuras",
-                    "type": "tour"
-                },
+                "category": {"id": 4, "name": "Aventuras", "type": "tour"},
                 "gallery": [
                     "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
-                    "category", "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
-                    "category", "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
-                    "category", "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
-                    "category"
-                ], 
-                "cover_image": "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
-                "status": True
+                    "category",
+                    "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
+                    "category",
+                    "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
+                    "category",
+                    "static/uploads/blogs/Screenshot from 2025-02-27 00-26-31.png",
+                    "category",
+                ],
+                "cover_image": "static/uploads/blogs/2025-02-27 00-26-31.png",
+                "status": True,
             }
         }
     )

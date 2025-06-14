@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session
-from ...schemas.user import UserSchema, UserCreate, UserInDB
+from ...schemas.user import UserSchema, UserCreate
 from uuid import UUID
 from ...database.engine import get_session
 from ...services import user
@@ -20,7 +20,7 @@ async def get_user(id_user: UUID, session: Session = Depends(get_session)):
 
     if not user_data:
         raise HTTPException(status_code=404, detail="User not found")
-    
+
     return user_data
 
 
@@ -30,7 +30,9 @@ async def post_user(user_item: UserCreate, session: Session = Depends(get_sessio
 
 
 @router.put("/user/{id_user}", response_model=UserSchema)
-async def put_user(id_user: UUID, user_data: UserCreate, session: Session = Depends(get_session)):
+async def put_user(
+    id_user: UUID, user_data: UserCreate, session: Session = Depends(get_session)
+):
     updated = user.update_user(session, id_user, user_data.model_dump())
 
     if not updated:
@@ -40,13 +42,16 @@ async def put_user(id_user: UUID, user_data: UserCreate, session: Session = Depe
 
 
 @router.patch("/user/{id_user}", response_model=UserSchema)
-async def patch_user(id_user: UUID, user_data: UserCreate, session: Session = Depends(get_session)):
+async def patch_user(
+    id_user: UUID, user_data: UserCreate, session: Session = Depends(get_session)
+):
     updated = user.patch_user(session, id_user, user_data)
 
     if not updated:
         raise HTTPException(status_code=404, detail="User not found")
-    
+
     return updated
+
 
 @router.delete("/user/{id_user}")
 async def delete_user(id_user: UUID, session: Session = Depends(get_session)):
@@ -54,6 +59,5 @@ async def delete_user(id_user: UUID, session: Session = Depends(get_session)):
 
     if not deleted:
         raise HTTPException(status_code=404, detail="User not found")
-    
+
     return {"message": f"User with id {id_user} deleted"}
-    

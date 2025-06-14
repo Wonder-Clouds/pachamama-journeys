@@ -18,7 +18,7 @@ class UserSchema(BaseModel):
                 "name": "Pedro",
                 "username": "pedro_04",
                 "type": "user",
-                "disabled": False
+                "disabled": False,
             }
         }
     )
@@ -36,7 +36,7 @@ class UserInDB(UserSchema):
                 "username": "pedro_04",
                 "password": "-2987146553041852702",
                 "type": "user",
-                "disabled": False
+                "disabled": False,
             }
         }
     )
@@ -57,7 +57,7 @@ class UserCreate(BaseModel):
                 "username": "pedro_04",
                 "password": "1234",
                 "type": "user",
-                "disabled": False
+                "disabled": False,
             }
         }
     )

@@ -19,32 +19,42 @@ async def get_category(id_category: int, session: Session = Depends(get_session)
 
     if not category_data:
         raise HTTPException(status_code=404, detail="Category not found")
-    
+
     return category_data
 
 
 @router.post("/category/", response_model=CategorySchema)
-async def post_category(category_item: CategoryCreate, session: Session = Depends(get_session)):
+async def post_category(
+    category_item: CategoryCreate, session: Session = Depends(get_session)
+):
     return category.create_category(session, category_item)
 
 
 @router.put("/category/{id_category}", response_model=CategorySchema)
-async def put_category(id_category: int, category_data: CategoryCreate, session: Session = Depends(get_session)):
+async def put_category(
+    id_category: int,
+    category_data: CategoryCreate,
+    session: Session = Depends(get_session),
+):
     updated = category.update_category(session, id_category, category_data.model_dump())
 
     if not updated:
         raise HTTPException(status_code=404, detail="Category not found")
-    
+
     return updated
 
 
 @router.patch("/category/{id_category}", response_model=CategorySchema)
-async def patch_category(id_category: int, category_data: CategoryCreate, session: Session = Depends(get_session)):
+async def patch_category(
+    id_category: int,
+    category_data: CategoryCreate,
+    session: Session = Depends(get_session),
+):
     updated = category.patch_category(session, id_category, category_data)
 
     if not updated:
         raise HTTPException(status_code=404, detail="Category not found")
-    
+
     return updated
 
 
@@ -54,6 +64,5 @@ async def delete_category(id_category: int, session: Session = Depends(get_sessi
 
     if not deleted:
         raise HTTPException(status_code=404, detail="Category not found")
-    
+
     return {"message": f"Category with id {id_category} deleted"}
-    

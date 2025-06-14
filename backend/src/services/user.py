@@ -12,7 +12,7 @@ def create_user(session: Session, user: UserCreate) -> UserSchema:
         username=user.username,
         type=user.type,
         disabled=user.disabled,
-        hashed_password=get_password_hash(user.password)
+        hashed_password=get_password_hash(user.password),
     )
     session.add(user)
     session.commit()
@@ -34,9 +34,9 @@ def list_users(session: Session) -> list[UserSchema]:
 def list_user(session: Session, id_user: UUID) -> UserInDB | None:
     db_user = session.get(User, id_user)
 
-    if not db_user: 
+    if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
-    
+
     return db_user
 
 
@@ -45,10 +45,10 @@ def update_user(session: Session, id_user: str, user_data: dict) -> User | None:
 
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
-    
+
     for key, value in user_data.items():
         setattr(db_user, key, value)
-    
+
     session.add(db_user)
     session.commit()
     session.refresh(db_user)
@@ -56,17 +56,19 @@ def update_user(session: Session, id_user: str, user_data: dict) -> User | None:
     return db_user
 
 
-def patch_user(session: Session, id_user: str, user_data: UserCreate) -> UserSchema | None:
+def patch_user(
+    session: Session, id_user: str, user_data: UserCreate
+) -> UserSchema | None:
     db_user = session.get(User, id_user)
-    
+
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
-    
+
     user_dict = user_data.model_dump(exclude_unset=True)
-    
+
     for key, value in user_dict.items():
         setattr(db_user, key, value)
-    
+
     session.add(db_user)
     session.commit()
     session.refresh(db_user)
@@ -79,7 +81,7 @@ def delete_user(session: Session, id_user: str) -> bool:
 
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
-    
+
     session.delete(db_user)
     session.commit()
 

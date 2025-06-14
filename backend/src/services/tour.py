@@ -7,6 +7,7 @@ from fastapi import HTTPException
 from uuid import UUID
 import json
 
+
 def create_tour(session: Session, tour: TourCreate) -> TourSchema:
     if isinstance(tour.gallery, list):
         tour.gallery = json.dumps(tour.gallery)
@@ -37,7 +38,7 @@ def list_tours(session: Session) -> list[TourSchema]:
                 category=category_schema,
                 gallery=t.gallery,
                 cover_image=t.cover_image,
-                status=t.status
+                status=t.status,
             )
         )
     return result
@@ -85,7 +86,7 @@ def delete_tour(session: Session, id_tour: str) -> bool:
 
     if not db_tour:
         raise HTTPException(status_code=404, detail="Tour not found")
-    
+
     session.delete(db_tour)
     session.commit()
 
