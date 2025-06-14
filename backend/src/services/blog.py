@@ -20,7 +20,7 @@ def list_blog(session: Session, id_blog: str):
 
     if not db_blog:
         raise HTTPException(status_code=404, detail="Blog not found")
-    
+
     return db_blog
 
 
@@ -28,10 +28,10 @@ def update_blog(session: Session, id_blog: str, blog_data: dict) -> Blog | None:
     db_blog = session.get(Blog, id_blog)
     if not db_blog:
         raise HTTPException(status_code=404, detail="Blog not found")
-    
+
     for key, value in blog_data.items():
         setattr(db_blog, key, value)
-    
+
     session.commit()
     session.refresh(db_blog)
     return db_blog
@@ -42,10 +42,10 @@ def patch_blog(session: Session, id_blog: str, blog_data: dict) -> Blog | None:
 
     if not db_blog:
         raise HTTPException(status_code=404, detail="Blog not found")
-    
+
     for key, value in blog_data.items():
         setattr(db_blog, key, value)
-    
+
     session.add(db_blog)
     session.commit()
     session.refresh(db_blog)
@@ -58,7 +58,7 @@ def delete_blog(session: Session, id_blog: str) -> bool:
 
     if not db_blog:
         raise HTTPException(status_code=404, detail="Blog not found")
-    
+
     session.delete(db_blog)
     session.commit()
 
