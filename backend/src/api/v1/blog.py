@@ -3,7 +3,7 @@ from sqlmodel import Session
 from uuid import UUID
 import os
 import shutil
-from ...models.blog import Blog
+from ...schemas.blog import BlogCreate, BlogSchema
 from ...database.engine import get_session
 from ...services import blog
 
@@ -13,12 +13,12 @@ router = APIRouter(tags=["Blog"])
 UPLOAD_DIR = "static/uploads/blogs"
 
 
-@router.get("/blogs/", response_model=list[Blog])
+@router.get("/blogs/", response_model=list[BlogSchema])
 async def get_blogs(session: Session = Depends(get_session)):
     return blog.list_blogs(session)
 
 
-@router.get("/blog/{id_blog}", response_model=Blog)
+@router.get("/blog/{id_blog}", response_model=BlogSchema)
 async def get_blog(id_blog: UUID, session: Session = Depends(get_session)):
     blog_data = blog.list_blog(session, id_blog)
 
@@ -28,7 +28,7 @@ async def get_blog(id_blog: UUID, session: Session = Depends(get_session)):
     return blog_data
 
 
-@router.post("/blog/", response_model=Blog)
+@router.post("/blog/", response_model=BlogSchema)
 async def post_blog(
         title: str = Form(...),
         content: str = Form(...),
@@ -47,12 +47,12 @@ async def post_blog(
         with open(image_path, "wb") as buffer:
             shutil.copyfileobj(cover.file, buffer)
     
-    new_blog = Blog(title=title, content=content, category=category, status=status, cover=image_path, session=session, publication_date=publication_date)
+    new_blog = BlogCreate(title=title, content=content, category=category, status=status, cover=image_path, session=session, publication_date=publication_date)
 
     return blog.create_blog(session, new_blog)
 
 
-@router.put("/blog/{id_blog}", response_model=Blog)
+@router.put("/blog/{id_blog}", response_model=BlogSchema)
 async def put_blog(
     id_blog: UUID,
     title: str = Form(None),
@@ -88,7 +88,7 @@ async def put_blog(
     return updated
 
 
-@router.patch("/blog/{id_blog}", response_model=Blog)
+@router.patch("/blog/{id_blog}", response_model=BlogSchema)
 async def patch_blog(
     id_blog: UUID,
     title: str = Form(None),
