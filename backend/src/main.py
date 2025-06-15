@@ -10,6 +10,7 @@ import os
 
 load_dotenv()
 
+DEPLOYMENT = os.getenv("DEPLOYMENT").lower() == "false"
 CORS_ORIGINS = os.getenv("CORS_ORIGINS")
 
 
@@ -21,7 +22,14 @@ async def lifespan(app: FastAPI):
 
 origins = CORS_ORIGINS.split(",")
 
-app = FastAPI(lifespan=lifespan, title="Pachamama Journey API 1.0")
+app = FastAPI(
+    lifespan=lifespan,
+    title="Pachamama Journey API 1.0",
+    docs_url="/docs" if DEPLOYMENT else None,
+    redoc_url="/redoc" if DEPLOYMENT else None,
+    openapi_url="/openapi.json" if DEPLOYMENT else None,
+)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
