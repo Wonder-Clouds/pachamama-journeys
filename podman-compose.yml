@@ -23,7 +23,7 @@ services:
       - ALGORITHM=${ALGORITHM}
       - SALT=${SALT}
       - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES}
-      - DEPLOYEMENT=${DEPLOYEMENT}
+      - DEPLOYMENT=${DEPLOYMENT}
   
   database:
     image: postgres:15.1-alpine3.16
