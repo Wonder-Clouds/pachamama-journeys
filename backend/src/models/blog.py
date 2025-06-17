@@ -10,4 +10,3 @@ class Blog(SQLModel, table=True):
     category: int = Field(foreign_key="category.id")
     status: bool = Field(default=False)
     publication_date: str
-    

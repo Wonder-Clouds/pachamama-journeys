@@ -3,7 +3,7 @@ from sqlmodel import Session
 from uuid import UUID
 import os
 import shutil
-from ...models.blog import Blog
+from ...schemas.blog import BlogCreate, BlogSchema
 from ...database.engine import get_session
 from ...services import blog
 
@@ -13,32 +13,32 @@ router = APIRouter(tags=["Blog"])
 UPLOAD_DIR = "static/uploads/blogs"
 
 
-@router.get("/blogs/", response_model=list[Blog])
+@router.get("/blogs/", response_model=list[BlogSchema])
 async def get_blogs(session: Session = Depends(get_session)):
     return blog.list_blogs(session)
 
 
-@router.get("/blog/{id_blog}", response_model=Blog)
+@router.get("/blog/{id_blog}", response_model=BlogSchema)
 async def get_blog(id_blog: UUID, session: Session = Depends(get_session)):
     blog_data = blog.list_blog(session, id_blog)
 
     if not blog_data:
         raise HTTPException(status_code=404, detail="Blog not found")
-    
+
     return blog_data
 
 
-@router.post("/blog/", response_model=Blog)
+@router.post("/blog/", response_model=BlogSchema)
 async def post_blog(
-        title: str = Form(...),
-        content: str = Form(...),
-        category: int = Form(...),
-        status: bool = Form(...), 
-        cover: UploadFile = File(None),
-        publication_date: str = File(...),
-        session: Session = Depends(get_session)
-    ):
-    
+    title: str = Form(...),
+    content: str = Form(...),
+    category: int = Form(...),
+    status: bool = Form(...),
+    cover: UploadFile = File(None),
+    publication_date: str = File(...),
+    session: Session = Depends(get_session),
+):
+
     image_path = None
 
     if cover:
@@ -46,13 +46,21 @@ async def post_blog(
         image_path = f"/{UPLOAD_DIR}/{cover.filename}"
         with open(image_path, "wb") as buffer:
             shutil.copyfileobj(cover.file, buffer)
-    
-    new_blog = Blog(title=title, content=content, category=category, status=status, cover=image_path, session=session, publication_date=publication_date)
+
+    new_blog = BlogCreate(
+        title=title,
+        content=content,
+        category=category,
+        status=status,
+        cover=image_path,
+        session=session,
+        publication_date=publication_date,
+    )
 
     return blog.create_blog(session, new_blog)
 
 
-@router.put("/blog/{id_blog}", response_model=Blog)
+@router.put("/blog/{id_blog}", response_model=BlogSchema)
 async def put_blog(
     id_blog: UUID,
     title: str = Form(None),
@@ -61,7 +69,7 @@ async def put_blog(
     status: bool = Form(None),
     publication_date: str = Form(None),
     cover: UploadFile = File(None),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     image_path = None
 
@@ -75,20 +83,20 @@ async def put_blog(
         "title": title,
         "content": content,
         "category": category,
-        "status": status, 
+        "status": status,
         "publication_date": publication_date,
-        "cover": image_path
+        "cover": image_path,
     }
 
     updated = blog.update_blog(session, id_blog, blog_data)
 
     if not updated:
         raise HTTPException(status_code=404, detail="Blog not found")
-    
+
     return updated
 
 
-@router.patch("/blog/{id_blog}", response_model=Blog)
+@router.patch("/blog/{id_blog}", response_model=BlogSchema)
 async def patch_blog(
     id_blog: UUID,
     title: str = Form(None),
@@ -97,7 +105,7 @@ async def patch_blog(
     status: bool = Form(None),
     publication_date: str = Form(None),
     cover: UploadFile = File(None),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     update_data = {}
 
@@ -122,7 +130,7 @@ async def patch_blog(
 
     if not updated:
         raise HTTPException(status_code=404, detail="Blog not found")
-    
+
     return updated
 
 
@@ -132,5 +140,5 @@ async def delete_blog(id_blog: UUID, session: Session = Depends(get_session)):
 
     if not deleted:
         raise HTTPException(status_code=404, detail="Blog not found")
-    
+
     return {"message": f"Blog with id {id_blog} deleted"}

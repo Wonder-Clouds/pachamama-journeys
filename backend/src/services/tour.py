@@ -1,13 +1,18 @@
 from ..models.tour import Tour
+from ..schemas.tour import TourSchema, TourCreate
+from ..schemas.category import CategorySchema
+from ..models.category import Category
 from sqlmodel import Session, select
 from fastapi import HTTPException
+from uuid import UUID
 import json
 
-def create_tour(session: Session, tour: Tour) -> Tour:
+
+def create_tour(session: Session, tour: TourCreate) -> TourSchema:
     if isinstance(tour.gallery, list):
         tour.gallery = json.dumps(tour.gallery)
 
-    tour = Tour(**tour.model_dump())
+    tour = TourSchema(**tour.model_dump())
     session.add(tour)
     session.commit()
     session.refresh(tour)
@@ -15,14 +20,31 @@ def create_tour(session: Session, tour: Tour) -> Tour:
     return tour
 
 
-def list_tours(session: Session) -> list[Tour]:
+def list_tours(session: Session) -> list[TourSchema]:
     tours = session.exec(select(Tour)).all()
+    result = []
     for t in tours:
         t.gallery = json.loads(t.gallery) if t.gallery else []
-    return tours
+        category_obj = session.get(Category, t.category)
+        category_schema = CategorySchema.model_validate(category_obj.__dict__)
+        result.append(
+            TourSchema(
+                id=t.id,
+                title=t.title,
+                location=t.location,
+                time=t.time,
+                price=t.price,
+                description=t.description,
+                category=category_schema,
+                gallery=t.gallery,
+                cover_image=t.cover_image,
+                status=t.status,
+            )
+        )
+    return result
 
 
-def list_tour(session: Session, id_tour: str) -> Tour:
+def list_tour(session: Session, id_tour: UUID) -> TourSchema:
     db_tour = session.get(Tour, id_tour)
     if not db_tour:
         raise HTTPException(status_code=404, detail="Tour not found")
@@ -30,7 +52,7 @@ def list_tour(session: Session, id_tour: str) -> Tour:
     return db_tour
 
 
-def update_tour(session: Session, id_tour: str, tour_data: dict) -> Tour | None:
+def update_tour(session: Session, id_tour: UUID, tour_data: dict) -> TourSchema | None:
     db_tour = session.get(Tour, id_tour)
     if not db_tour:
         raise HTTPException(status_code=404, detail="Tour not found")
@@ -44,7 +66,7 @@ def update_tour(session: Session, id_tour: str, tour_data: dict) -> Tour | None:
     return db_tour
 
 
-def patch_tour(session: Session, id_tour: str, tour_data: dict) -> Tour | None:
+def patch_tour(session: Session, id_tour: UUID, tour_data: dict) -> TourSchema | None:
     db_tour = session.get(Tour, id_tour)
     if not db_tour:
         raise HTTPException(status_code=404, detail="Tour not found")
@@ -64,7 +86,7 @@ def delete_tour(session: Session, id_tour: str) -> bool:
 
     if not db_tour:
         raise HTTPException(status_code=404, detail="Tour not found")
-    
+
     session.delete(db_tour)
     session.commit()
 

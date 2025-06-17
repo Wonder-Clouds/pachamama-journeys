@@ -1,25 +1,22 @@
 from pydantic import BaseModel, ConfigDict
-from enum import Enum
+from ..shared.enums import CategoryType
 
-
-# Enum of types of Category
-class Type(str, Enum):
-    tour = "tour"
-    blog = "blog"
- 
 
 # Schema of Category
-class Category(BaseModel):
+class CategorySchema(BaseModel):
     id: int
     name: str
-    type: Type
-    
+    type: CategoryType
+
     model_config = ConfigDict(
-        json_schema_extra={
-            "example": {
-                "id": 1,
-                "name": "Cusco",
-                "type": "tour"
-            }
-        }
+        json_schema_extra={"example": {"id": 1, "name": "Cusco", "type": "tour"}}
+    )
+
+
+class CategoryCreate(BaseModel):
+    name: str
+    type: CategoryType
+
+    model_config = ConfigDict(
+        json_schema_extra={"example": {"name": "Aventuras", "type": "tour"}}
     )
