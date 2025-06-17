@@ -33,4 +33,6 @@ def authenticate_user(session: Session, username: str, password: str) -> User:
         raise HTTPException(status_code=404, detail="Username not found")
     if not verify_password(password, user.hashed_password):
         raise HTTPException(status_code=404, detail="Wrong password")
+    
     return user
+
