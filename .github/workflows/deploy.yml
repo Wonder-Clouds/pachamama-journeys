@@ -23,6 +23,6 @@ jobs:
           cd ~/pachamama-journeys
           git pull origin main --no-rebase
           podman-compose build backend frontend
-          podman-compose stop backend frontend
+          podman-compose stop backend frontend || true
           podman-compose up -d backend frontend
-          podman image prune -f -a
+          podman image prune -f
