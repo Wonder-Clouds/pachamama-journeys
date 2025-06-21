@@ -89,6 +89,29 @@ La documentación interactiva estará disponible en `/docs` si el entorno no es 
 
 ---
 
+## Formateo y linting del código
+
+Para mantener la calidad y consistencia del código, utiliza las siguientes herramientas:
+
+- **Black** para formatear automáticamente el código.
+- **Ruff** para análisis estático y corrección de estilo.
+
+### Comandos útiles
+
+Formatear todo el código fuente con Black:
+
+```sh
+poetry run black src
+```
+
+Revisar el código con Ruff:
+
+```sh
+poetry run ruff check src
+```
+
+Puedes agregar estos comandos a tu flujo de trabajo antes de hacer commits para asegurar un código limpio y consistente.
+
 ## Notas
 
 - Los archivos estáticos (imágenes, etc.) se almacenan en la carpeta `static/`.
