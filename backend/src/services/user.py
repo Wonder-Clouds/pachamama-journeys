@@ -2,7 +2,7 @@ from ..models.user import User
 from sqlmodel import Session, select
 from uuid import UUID
 from fastapi import HTTPException
-from ..auth.jwt import get_password_hash
+from .auth import get_password_hash
 from ..schemas.user import UserSchema, TypeUser, UserCreate, UserInDB
 
 
@@ -40,13 +40,15 @@ def list_user(session: Session, id_user: UUID) -> UserInDB | None:
     return db_user
 
 
-def update_user(session: Session, id_user: str, user_data: dict) -> User | None:
+def update_user(session: Session, id_user: str, user_data: UserCreate) -> User | None:
     db_user = session.get(User, id_user)
-
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
 
-    for key, value in user_data.items():
+    user_dict = user_data.model_dump(exclude_unset=True)
+    user_dict["password"] = get_password_hash(user_dict["password"])
+
+    for key, value in user_dict.items():
         setattr(db_user, key, value)
 
     session.add(db_user)
@@ -65,6 +67,7 @@ def patch_user(
         raise HTTPException(status_code=404, detail="User not found")
 
     user_dict = user_data.model_dump(exclude_unset=True)
+    user_dict["password"] = get_password_hash(user_dict["password"])
 
     for key, value in user_dict.items():
         setattr(db_user, key, value)
