@@ -54,13 +54,13 @@ Pachamama Journey es un CMS (Content Management System) desarrollado para una ag
    ACCESS_TOKEN_EXPIRE_MINUTES=<NUMERO_A_ELECCION>
 
    # Dev Mode
-   DEPLOYEMENT=false
+   DEPLOYMENT=false
    ```
 
 3. **Instala las dependencias con Poetry:**
 
    ```sh
-   poetry install
+   poetry install --no-root
    ```
 
 4. **Levanta la base de datos con Podman Compose:**
