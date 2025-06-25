@@ -1,0 +1,33 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:  
+    - name: Deploy to VPS
+      uses: appleboy/ssh-action@v1.0.0
+      
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd ~/pachamama-journeys
+          git pull origin main --no-rebase
+
+          echo "Limpiando imágenes viejas de backend y frontend"
+          podman images --format "{{.Repository}} {{.ID}} {{.CreatedAt}}" | grep pachamama-journeys_backend \
+            | sort -rk3 | tail -n +2 | awk '{print $2}' | xargs -r podman rmi -f
+
+          podman images --format "{{.Repository}} {{.ID}} {{.CreatedAt}}" | grep pachamama-journeys_frontend \
+            | sort -rk3 | tail -n +2 | awk '{print $2}' | xargs -r podman rmi -f
+
+          podman-compose stop backend frontend || true
+          podman-compose build backend frontend
+          podman-compose up -d backend frontend
